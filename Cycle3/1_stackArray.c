@@ -26,6 +26,17 @@ void pop()
     }
 }
 
+
+// Displays top element without popping it
+int peek()
+{
+	if(top == -1)
+		return -1;
+	else
+		return stack[top];
+}
+
+
 // To print elements of stack
 void display()
 {
@@ -50,7 +61,8 @@ int main()
         printf("\n1.Push");
         printf("\n2.Pop");
         printf("\n3.Display stack");
-        printf("\n4.Exit\n");
+        printf("\n4.Display Top Element");
+        printf("\n5.Exit\n");
         scanf("%d", &ch);
         switch (ch)
         {
@@ -65,8 +77,19 @@ int main()
         case 3:
             display();
             break;
+        case 4:
+	        if(top == -1)
+	        {
+	        	printf("Stack Empty!");
+	        }
+	        else
+	        {
+            printf("Top element: %d", peek());
+	        
+	        }
+            break;
         }
-    } while (ch < 4);
+    } while (ch < 5);
 
     return 0;
 }
