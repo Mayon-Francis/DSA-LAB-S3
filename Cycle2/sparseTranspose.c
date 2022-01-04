@@ -14,7 +14,7 @@ struct Sparse_matrix transposeSparse[MAX_TERMS];
 int SIZE;
 
 //SIZE OF ROWS AND COLS OF INPUT MATRIX
-const int MATRIX_ROWS, MATRIX_COLS;
+int MATRIX_ROWS, MATRIX_COLS;
 
 //INPUT MATRIX AND TRANSPOSE
 int matrix[100][100];

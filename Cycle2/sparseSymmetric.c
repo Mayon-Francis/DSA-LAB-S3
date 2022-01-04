@@ -14,7 +14,7 @@ struct Sparse_matrix transposeSparse[MAX_TERMS];
 int SIZE;
 
 //SIZE OF ROWS AND COLS OF INPUT MATRIX
-const int MATRIX_ROWS, MATRIX_COLS;
+int MATRIX_ROWS, MATRIX_COLS;
 
 //INPUT MATRIX AND TRANSPOSE
 int matrix[100][100];
@@ -94,6 +94,27 @@ void transposeSparseMatrix()
     }
 }
 
+// Checks whether given two sparse matrices are equal
+// Returns 1 for true, 0 for false
+int checkSparseEqual()
+{
+    int flag = 1;
+    for(int i=0; i<SIZE; i++)
+    {
+        if  (   sparse1[i].row   != transposeSparse[i].row ||
+                sparse1[i].col   != transposeSparse[i].col ||
+                sparse1[i].value != transposeSparse[i].value
+            )
+        {
+            flag = 0;
+            break;
+        }
+    }
+    return flag;
+        
+}
+
+
 //CONVERT TUPLE FORM BACK TO 2D MATRIX
 void convertSparseToNormal()
 {
@@ -115,49 +136,32 @@ int main()
     int i, j;
     printf("\nEnter matrix dimensions: ");
     scanf("%d %d", &MATRIX_ROWS, &MATRIX_COLS);
-    
-    if(MATRIX_ROWS == MATRIX_COLS)
-    {
-		printf("\nEnter matrix: ");
-		for (i = 0; i < MATRIX_ROWS; i++)
-		    for (j = 0; j < MATRIX_COLS; j++)
-		        scanf("%d", &matrix[i][j]);
+    printf("\nEnter matrix: \n");
+    for (i = 0; i < MATRIX_ROWS; i++)
+        for (j = 0; j < MATRIX_COLS; j++)
+            scanf("%d", &matrix[i][j]);
 
-		printf("\nINPUT MATRIX\n");
-		printMatrix(matrix, MATRIX_ROWS, MATRIX_COLS);
+    printf("\nINPUT MATRIX\n");
+    printMatrix(matrix, MATRIX_ROWS, MATRIX_COLS);
 
-		convertToSparseMatrix();
+    convertToSparseMatrix();
 
-		int flag = 1;
-		for(int i=1; i<SIZE; i++)
-		{
-			//sparse1[i].row;
-			if( ((sparse1[i].row != transposeSparse[i].row) || sparse1[i].col != transposeSparse[i].col) || sparse1[i].value != transposeSparse[i].value)
-			{
-				flag = 0;
-				break;
-			}
-		}
-		
-		if(flag == 1)
-			printf("Symmetric.\n ");
-		else
-			printf("Not Symmetric.\n ");
-		//printf("\n\nSPARSE MATRIX (TUPLE FORM)");
-		printSparseMatrix(sparse1);
-		printSparseMatrix(transposeSparse);
+    printf("\n\nSPARSE MATRIX (TUPLE FORM)");
+    printSparseMatrix(sparse1);
 
-		//printf("\n\nTRANSPOSE OF SPARSE MATRIX (TUPLE FORM)");
-		//transposeSparseMatrix();
-		//printSparseMatrix(transposeSparse);
+    printf("\n\nTRANSPOSE OF SPARSE MATRIX (TUPLE FORM)");
+    transposeSparseMatrix();
+    printSparseMatrix(transposeSparse);
+    int flag = checkSparseEqual();
+    if(flag)
+        printf("\n\nSymmetric!\n");
+    else    
+        printf("\n\nNot Symmetric!\n");
 
-		//printf("\n\nTRANSPOSE OF INPUT MATRIX\n");
-		//convertSparseToNormal();
-		//printMatrix(transpose, MATRIX_COLS, MATRIX_ROWS);
-    }
-    else
-    {
-    	printf("Not symmetric. \n");
-    }
+
+    // Debug
+    // printf("\n\nTRANSPOSE OF INPUT MATRIX\n");
+    // convertSparseToNormal();
+    // printMatrix(transpose, MATRIX_COLS, MATRIX_ROWS);
     return 0;
 }
