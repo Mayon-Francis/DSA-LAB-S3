@@ -84,8 +84,7 @@ int main()
 	        }
 	        else
 	        {
-            printf("Top element: %d", peek());
-	        
+                printf("Top element: %d", peek());
 	        }
             break;
         }
