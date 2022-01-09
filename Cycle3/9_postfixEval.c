@@ -110,7 +110,7 @@ int main()
 {
     char exp[MAX]="23+";
     printf("Enter a valid postfix expression: ");
-    scanf("%s",&exp);
+    scanf("%s",exp);
     int result = evalPostfix(exp);
     printf("Result : %d \n",result);
 
