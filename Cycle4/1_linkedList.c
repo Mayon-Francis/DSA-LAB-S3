@@ -58,6 +58,42 @@ void display()
     printf("\n\n");
 }
 
+void delete(int data)
+{
+    if(first == NULL)
+    {
+        printf("\nList Empty\n");
+    }
+    else
+    {
+        struct node *temp = first, *del = NULL;
+        if(first->data == data)
+        {
+            del = first;
+            first = first->next;
+            free(del);
+            printf("\nElement Deleted! \n");
+        }
+        else
+        {
+            while(temp != NULL)
+            {
+                if(temp->next!=NULL && temp->next->data == data)
+                {
+                    del = temp->next;
+                    temp->next = temp->next->next;
+                    free(del); 
+                    printf("\nElement Deleted! \n");
+                    break;
+                }
+                temp = temp->next;
+            }
+        }
+        if(del == NULL)
+            printf("\nElement not found! \n");
+    }
+}
+
 int main()
 {
     int choice;
@@ -66,7 +102,8 @@ int main()
         int data;
         printf("1: Add elements\n");
         printf("2: Display Elements\n");
-        printf("3: Exit\n");
+        printf("3: Delete Element\n");
+        printf("4: Exit\n");
         printf("Enter your choice: ");
         scanf("%d",&choice);
         switch(choice)
@@ -80,11 +117,16 @@ int main()
                 display();
                 break;
             case 3:
+                printf("Enter value that you want to delete: ");
+                scanf("%d",&data);
+                delete(data);
+                break;
+            case 4:
                 break;
             default:
                 printf("Invalid Choice\n");
                 break;
         };
-    }while(choice != 3);
+    }while(choice != 4);
     return 0;
 }
