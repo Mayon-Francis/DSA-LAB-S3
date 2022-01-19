@@ -60,10 +60,6 @@ void delElemAtPos(int pos)
             printf("Element at position %d Deleted. \n",pos);
         }
     }
-    // else if(first == NULL)
-    // {
-    //     printf("Sorry, List Empty, cannot delete position %d",pos);
-    // }
     else
     {
         // There must be atleast pos-1 elements in the list
