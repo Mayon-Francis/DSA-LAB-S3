@@ -25,7 +25,7 @@ void push(int data)
     else
     {
     	rear = ++rear%MAX;
-		queue[rear] = data;
+	queue[rear] = data;
     }
 }
 
